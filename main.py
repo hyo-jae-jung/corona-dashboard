@@ -13,6 +13,23 @@ stylesheets = [
 
 app = dash.Dash(__name__, external_stylesheets=stylesheets)
 
+bubble_map = px.scatter_geo(countries_df, 
+                     size="Confirmed",
+                     locations="Country_Region",
+                     locationmode="country names",
+                    color="Confirmed",
+                     hover_name="Country_Region",
+                     size_max=40,
+                     template="plotly_dark",
+                     projection="natural earth",
+                     hover_data={
+                         "Confirmed":":,.0f",
+                         "Deaths":":,.0f",
+                         "Recovered":":,.0f",
+                         "Country_Region":False
+                     }
+                    )
+
 app.layout = html.Div(
     style={
         "textAlign": "center",
@@ -28,6 +45,11 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
+                html.Div(
+                    children=[
+                        dcc.Graph(figure=bubble_map)
+                    ]
+                ),
                 html.Div(
                     children=[
                         make_table(countries_df)
