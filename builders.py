@@ -17,12 +17,13 @@ def make_table(df):
                             "display": "grid",
                             "gridTemplateColumns": "repeat(4,1fr)",
                             "fontWeight": "600",
-                            "fontSize": 22,
+                            "fontSize": 16,
                         }
                     )
                 ]
             ),
             html.Tbody(
+                style={"maxHeight": "50vh", "display": "block", "overflow": "scroll",},
                 children=[
                     html.Tr(
                         style={
@@ -34,6 +35,7 @@ def make_table(df):
                         children=[
                             html.Td(
                                 value_column
+                                , style={"textAlign": "center"}
                             ) for value_column in value
                         ]
                     ) for value in df.values
