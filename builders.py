@@ -1,4 +1,5 @@
-import dash_html_components as html
+import dash
+from dash import html
 
 
 def make_table(df):

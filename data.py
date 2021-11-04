@@ -14,6 +14,11 @@ countries_df = daily_df[["Country_Region", "Confirmed", "Deaths", "Recovered"]]
 countries_df = countries_df.groupby("Country_Region").sum(
 ).sort_values(by="Confirmed", ascending=False).reset_index()
 
+
+dropdown_options = countries_df.sort_values("Country_Region").reset_index()
+dropdown_options = dropdown_options["Country_Region"]
+
+
 # time series data for global and each country
 conditions = ["confirmed", "deaths", "recovered"]
 
